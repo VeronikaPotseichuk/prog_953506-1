@@ -9,7 +9,7 @@ int getOperator()
 {
     while (true)
     {
-        printf("Введите значение х: ");
+        printf("Enter value х: ");
         scanf_s("%d", &x);
         return x;
     }
@@ -39,7 +39,7 @@ int solve(double radians, int n)
         if ((result - sin(radians)) < e)
         {
             printf("S(x) - %Lf\n", result);
-            printf("Исследуемое выражение отличается на заданную погрешность при n:" );
+            printf("The expression under study differs by a given error for n:" );
             return y;
         }
     }
@@ -48,7 +48,6 @@ int solve(double radians, int n)
 
 int main()
 {
-    setlocale(0, "");
     getOperator();
     printf("%d", solve(x, 0));
     return 0;

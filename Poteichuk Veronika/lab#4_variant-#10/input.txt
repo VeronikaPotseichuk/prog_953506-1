@@ -1,0 +1,74 @@
+#include "stdafx.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstring>
+#include <ctype.h>
+
+char* key_UP(char*buff, char(* keys)[20], int num_keys)
+{
+	char * outbuff = (char*)calloc(256, sizeof(char));
+	char * test_key = (char*)calloc(20, sizeof(char));
+	int numc = 0;
+
+	while (!isalpha(buff[numc]) && buff[numc] != '\0')
+		outbuff[numc] = buff[numc++];
+	while (buff[numc] != '\0')
+	{
+		bool iskey = false;
+		int numctk = 0;
+		int newnumc = numc;
+		while (isalpha(buff[newnumc]))
+		{
+			test_key[numctk++] = buff[newnumc++];
+		}
+		test_key[numctk] = '\0';
+		for (int j = 0; j < num_keys; j++)
+			if (strcmp(test_key, keys[j]))
+			{
+				iskey = true;
+				break;
+			}
+		if (iskey)
+		{
+			while (isalpha(buff[numc]))
+				outbuff[numc] = (char)toupper(buff[numc++]);
+		}
+		else
+		{
+			while (isalpha(buff[numc]))
+				outbuff[numc] = (char)tolower(buff[numc++]);
+		}
+		while (!isalpha(buff[numc]) && buff[numc] != '\0')
+			outbuff[numc] = buff[numc++];
+	}
+	outbuff[numc] = '\0';
+	return outbuff;
+}
+
+int main()
+{
+	char * buff;
+	char keys[100][20];
+	int num_keys = 0;
+	FILE *inf, *outf, *key_words;
+	inf = fopen("input.txt", "r");
+	fopen_s(&outf, "output.txt", "w");
+	key_words = fopen("key_words.txt", "r");
+	
+	while (fgets(buff, 256, key_words) != NULL)
+	{
+		strcpy(keys[num_keys++], buff);
+	}
+
+	buff = (char*)calloc(256, sizeof(char));
+
+	while (fgets(buff, 256, inf) != NULL)
+	{
+		buff = key_UP(buff, keys, num_keys);
+		fputs(buff, outf);
+	}
+	fclose(inf);
+	fclose(outf);
+	fclose(key_words);
+	return 0;
+}

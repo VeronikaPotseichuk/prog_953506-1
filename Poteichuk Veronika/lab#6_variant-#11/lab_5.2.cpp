@@ -165,8 +165,8 @@ void FreeMemory(PNode Tree)
 {
 	if (Tree != NULL)
 	{
-		free(Tree->left);
-		free(Tree->right);
+		FreeMemory(Tree->left);
+		FreeMemory(Tree->right);
 		free(Tree);
 	}
 }

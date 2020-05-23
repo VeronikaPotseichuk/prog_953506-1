@@ -135,6 +135,21 @@ Queue* PopQueue(Queue** head)
 	}
 }
 
+void DeleteStack(Stack ***head)
+{
+	free((**head)->next);
+	free(**head);
+	**head == NULL;
+}
+
+void DeleteQueue(Queue **head)
+{
+	free((*head)->next);
+	free((*head)->prev);
+	free(*head);
+	*head = NULL;
+}
+
 int main()
 {
 	int n, numsOfQueue, numOfStack, data, i = 0;
@@ -205,6 +220,8 @@ int main()
 	}
 	printf("\n");
 	system("pause");
+	DeleteQueue(&headQueue);
+	DeleteStack(&heads);
 	return 0;
 }
 

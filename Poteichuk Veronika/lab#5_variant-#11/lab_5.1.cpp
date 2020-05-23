@@ -80,6 +80,7 @@ void PushStack(Stack** head, int value)
 		temp->data = value;
 		*head = temp;
 	}
+	free(temp);
 }
 
 int PopStack(Stack** head)

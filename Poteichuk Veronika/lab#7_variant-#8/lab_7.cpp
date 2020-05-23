@@ -650,6 +650,27 @@ void SaveCreditCardInFile(CCard headCC)
 	fclose(outputCreditCard);
 }
 
+void FreeMemory(barcode* BCode)
+{
+	free(BCode->next);
+	free(BCode->prev);
+	if (BCode->prev != NULL)
+		BCode->prev->next = BCode->next;
+	if (BCode->next != NULL)
+		BCode->next->prev = BCode->prev;
+	free(BCode);
+}
+
+void FreeMemory(creditcard* CCard)
+{
+	free(CCard->next);
+	free(CCard->prev);
+	if (CCard->prev != NULL)
+		CCard->prev->next = CCard->next;
+	if (CCard->next != NULL)
+		CCard->next->prev = CCard->prev;
+	free(CCard);
+}
 
 int main()
 {
@@ -728,6 +749,7 @@ int main()
 			break;
 		}
 	} while (choice != 12);
+	FreeMemory(headBC);
+	FreeMemory(headCC);
     return 0;
 }
-

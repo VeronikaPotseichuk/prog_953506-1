@@ -296,7 +296,6 @@ int UseCreditCard(int sum, CCard headcreditcard)
 }
 
 //операции с штрихкодами
- øòðèõêîäàìè
 BCode ReadBarCodesFromFile(BCode headBC)
 {
 	int numberofbarcodes;

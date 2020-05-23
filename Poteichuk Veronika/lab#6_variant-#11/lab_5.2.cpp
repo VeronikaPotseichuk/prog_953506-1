@@ -160,6 +160,17 @@ int* WriteMass(int& number)
 	return Mass;
 }
 
+//Удаление поддерева/всего дерева
+void FreeMemory(PNode Tree)
+{
+	if (Tree != NULL)
+	{
+		free(Tree->left);
+		free(Tree->right);
+		free(Tree);
+	}
+}
+
 int main()
 {
 	setlocale(LC_ALL, "rus");
@@ -215,6 +226,8 @@ int main()
 			system("pause");
 		}
 	} while (choice != 6);
+	FreeMemory(FirstTree);
+	FreeMemory(SecondTree);
 	return 0;
 }
 

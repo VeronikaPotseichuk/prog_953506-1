@@ -122,6 +122,7 @@ void PushQueue(Queue** head, int value, char act, int nOS)
 		temp->action = act;
 		temp->numOfStack = nOS;
 	}
+	free(temp);
 }
 
 Queue* PopQueue(Queue** head)

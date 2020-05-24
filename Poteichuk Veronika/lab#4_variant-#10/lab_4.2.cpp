@@ -72,6 +72,9 @@ char* key_UP(char* buff, char(*keys)[20], int num_keys)
 	{
 		printf("Memory error");
 	}
+	free(outbuff);
+	free(test_key);
+
 }
 
 int main()
@@ -113,9 +116,13 @@ int main()
 			}
 			fclose(outf);
 			fclose(inf);
+			free(outf);
+			free(key_words);
+			free(inf);
 		}
 	}
 	else printf("Memory error\n");
+	free(buff);
 	return 0;
 }
 
